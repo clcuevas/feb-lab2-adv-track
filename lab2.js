@@ -47,6 +47,18 @@ function assert(expression, failureMessage) {
  TODO: Then, use a loop to calculate how long it took the blob to finish
  with Dowington.
 */
+var dowingtonPopulation = 1000;
+
+function Blob(personsConsumed) {
+  this.personsConsumed = personsConsumed;
+  this.consumptionRate = 1 + personsConsumed;
+}
+
+var blob = new Blob(0); //create an instance of a blob
+
+for (var i = 0; i < dowingtonPopulation; i--) {
+  
+}
 
 var hoursSpentInDowington; // TODO: assign me the value of the
                            // above calculation
