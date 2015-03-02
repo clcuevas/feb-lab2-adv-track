@@ -47,28 +47,56 @@ function assert(expression, failureMessage) {
  TODO: Then, use a loop to calculate how long it took the blob to finish
  with Dowington.
 */
-var dowingtonPopulation = 1000;
+var population = 1000;
 
-function Blob(personsConsumed) {
-  this.personsConsumed = personsConsumed;
-  this.consumptionRate = 1 + personsConsumed;
+function Blob(consumption) {
+  this.consumption = consumption;
+
+  return this.consumption;
 }
 
-var blob = new Blob(0); //create an instance of a blob
+var blob = new Blob(0); //instance of Blob
 
-for (var i = 0; i < dowingtonPopulation; i--) {
-  
+function consumeDowington() {
+  // var peopleConsumed = 0;
+  var rate = 0;
+
+  for (var i = blob.consumption; i < population; i+=rate) {
+    rate++;
+    blob.consumption += rate;
+    hoursSpentInDowington += 1;
+    console.log(blob.consumption + " people consumed at " + hoursSpentInDowington + " hour");
+  }
+  return hoursSpentInDowington;
 }
 
-var hoursSpentInDowington; // TODO: assign me the value of the
+var hoursSpentInDowington = 0;// TODO: assign me the value of the
                            // above calculation
+consumeDowington();
+console.log(hoursSpentInDowington + " hours spent");
 
 // Now, write a method that takes a population for an arbitrary
 // town, and the starting consumption rate, and returns the number
 // of hours the blob needs to ooze its way through that town.
+Blob.prototype.newTown = function(population, peoplePerHour) {
+  this.population = population;
+  this.peoplePerHour = peoplePerHour; //rate
+
+  var hoursToOoze = 0;
+
+  for (var i = blob.consumption; i < this.population; i+=this.peoplePerHour) {
+    this.peoplePerHour++;
+    blob.consumption += this.peoplePerHour;
+    hoursToOoze += 1;
+  }
+
+  return hoursToOoze;//#of hours the blob needs to ooze its way
+}
+
 
 function hoursToOoze(population, peoplePerHour) {
   // TODO: implement me based on the instructions above. Be sure to then assign me to the Blob's prototype.
+
 }
 
 assert(blob.hoursToOoze(0, 1) === 0, "no people means no time needed.");
