@@ -56,21 +56,22 @@ function Blob(consumption) {
 }
 
 var blob = new Blob(0); //instance of Blob
+var consumeDowingtonHours = 0; //hold hours
 
 function consumeDowington() {
   // var peopleConsumed = 0;
   var rate = 0;
 
-  for (var i = blob.consumption; i < population; i+=rate) {
+  for (var i = this.consumption; i < population; i+=rate) {
     rate++;
-    blob.consumption += rate;
-    hoursSpentInDowington += 1;
-    console.log(blob.consumption + " people consumed at " + hoursSpentInDowington + " hour");
+    this.consumption += rate;
+    consumeDowingtonHours += 1;
+    console.log(this.consumption + " people consumed at " + consumeDowingtonHours + " hour");
   }
-  return hoursSpentInDowington;
+  return consumeDowingtonHours;
 }
 
-var hoursSpentInDowington = 0;// TODO: assign me the value of the
+var hoursSpentInDowington = consumeDowingtonHours;// TODO: assign me the value of the
                            // above calculation
 consumeDowington();
 // console.log(hoursSpentInDowington + " hours spent");
@@ -79,26 +80,24 @@ consumeDowington();
 // town, and the starting consumption rate, and returns the number
 // of hours the blob needs to ooze its way through that town.
 
-Blob.prototype.newTown = function(population, peoplePerHour) {
-  this.population = population;
-  this.peoplePerHour = peoplePerHour; //rate
-
-  var hoursToOoze = 0;
-
-  for (var i = this.consumption; i <= this.population; i+=this.peoplePerHour) {
-    this.consumption += this.peoplePerHour;
-    this.peoplePerHour++;
-    hoursToOoze += 1;
-    // console.log("my rate " + this.peoplePerHour + " and my total hours " + hoursToOoze + " AND consumption " + this.consumption);
-  }
-
-  return hoursToOoze;//#of hours the blob needs to ooze its way
-};
+Blob.prototype.hoursToOoze = hoursToOoze;
 
 
 function hoursToOoze(population, peoplePerHour) {
   // TODO: implement me based on the instructions above. Be sure to then assign me to the Blob's prototype.
+  this.population = population;
+  this.peoplePerHour = peoplePerHour; //rate
 
+  var hoursTotal = 0;
+
+  for (var i = this.consumption; i <= this.population; i+=this.peoplePerHour) {
+    this.consumption += this.peoplePerHour;
+    this.peoplePerHour++;
+    hoursTotal += 1;
+    console.log("my rate " + this.peoplePerHour + " and my total hours " + hoursTotal + " AND consumption " + this.consumption);
+  }
+
+  return hoursTotal;//#of hours the blob needs to ooze its way
 }
 
 assert(blob.hoursToOoze(0, 1) === 0, "no people means no time needed.");
@@ -106,6 +105,7 @@ assert(blob.hoursToOoze(1000, 1) === hoursSpentInDowington,
   "hoursSpentInDowington should match hoursToOoze\"s result for 1000");
 // TODO: write three more assertions like the two above, testing out
 // the hoursToOoze method.
+assert(blob.hoursToOoze(2000, 2) === hoursSpentInDowington, "hoursSpentInDowington should match hoursToOoze\"s result for 2000");
 
 //*********************************************************
 // PROBLEM 2: Universal Translator. 20 points
