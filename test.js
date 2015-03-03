@@ -1,47 +1,54 @@
-// var population = 1000;
-
-function Blob(consumption) {
-	this.consumption = consumption;
-
-	return this.consumption;
-}
-
-Blob.prototype.newTown = function(population, peoplePerHour) {
-	this.population = population;
-  this.peoplePerHour = peoplePerHour; //rate
-
-  var hoursToOoze = 0;
-
-  for (var i = this.consumption; i <= this.population; i+=this.peoplePerHour) {
-    this.consumption += this.peoplePerHour;
-    this.peoplePerHour++;
-    hoursToOoze += 1;
-    console.log("my rate " + this.peoplePerHour + " and my total hours " + hoursToOoze + " AND consumption " + this.consumption);
+function assert(expression, failureMessage) {
+  if(!expression) {
+    console.log("assertion failure: ", failureMessage);
   }
-
-  return hoursToOoze;//#of hours the blob needs to ooze its way
 }
 
+var population = 1000;
 
-var blob = new Blob(0); //instance of Blob
-console.log(blob.newTown(1000, 1));
+function Blob() {
+  // this.consumption = consumption;
 
-// function consumeDowington() {
-// 	// var peopleConsumed = 0;
-// 	var rate = 0;
+  // return this.consumption;
+}
 
-// 	for (var i = blob.consumption; i < population; i+=rate) {
-// 		rate++;
-// 		blob.consumption += rate;
-// 		hoursSpentInDowington += 1;
-// 		console.log(blob.consumption + " people consumed at " + hoursSpentInDowington + " hour");
-// 	}
-// 	return hoursSpentInDowington;
-// }
+var blob = new Blob(); //instance of Blob
+var consumeDowingtonHours = 0; //hold hours
 
-// var hoursSpentInDowington = 0; //value = 45 after running function
-// //blob.consumption holds a value of 1035 after function runs
-// consumeDowington();
-// console.log(hoursSpentInDowington + " hours spent");
+function consumeDowington() {
+  var rate = 0;
 
+  for (var i = this.consumption; i <= population; i+=rate) {
+    this.consumption += rate;
+    rate++;
+    consumeDowingtonHours++;
+    console.log(this.consumption + " people consumed at " + consumeDowingtonHours + " hour");
+  }
+  return consumeDowingtonHours;
+}
 
+var hoursSpentInDowington = consumeDowingtonHours;
+
+console.log(consumeDowington());
+
+Blob.prototype.hoursToOoze = hoursToOoze;
+
+function hoursToOoze(population, peoplePerHour) {
+  // this.population = population;
+  // this.peoplePerHour = peoplePerHour; //rate
+  var consumption = 0;
+  var hoursTotal = 0;
+
+  for(var i = peoplePerHour; i <= population; i+=peoplePerHour) {
+    consumption += peoplePerHour;
+    peoplePerHour++;
+    hoursTotal++;
+    console.log("my rate " + peoplePerHour + " and my total hours " + hoursTotal + " AND consumption " + consumption);
+  }
+  console.log(hoursTotal + " hours spent consuming population");
+  return hoursTotal;
+}
+
+assert(blob.hoursToOoze(0, 1) === 0, "no people means no time needed.");
+assert(blob.hoursToOoze(1000, 1) === hoursSpentInDowington,
+  "hoursSpentInDowington should match hoursToOoze\"s result for 1000");

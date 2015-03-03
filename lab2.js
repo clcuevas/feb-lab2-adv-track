@@ -47,7 +47,7 @@ function assert(expression, failureMessage) {
  TODO: Then, use a loop to calculate how long it took the blob to finish
  with Dowington.
 */
-var population = 1000;
+// var population = 1000;
 
 function Blob(consumption) {
   this.consumption = consumption;
@@ -58,22 +58,22 @@ function Blob(consumption) {
 var blob = new Blob(0); //instance of Blob
 var consumeDowingtonHours = 0; //hold hours
 
-function consumeDowington() {
-  // var peopleConsumed = 0;
-  var rate = 0;
+// function consumeDowington() {
+//   // var peopleConsumed = 0;
+//   var rate = 0;
 
-  for (var i = this.consumption; i < population; i+=rate) {
-    rate++;
-    this.consumption += rate;
-    consumeDowingtonHours += 1;
-    console.log(this.consumption + " people consumed at " + consumeDowingtonHours + " hour");
-  }
-  return consumeDowingtonHours;
-}
+//   for (var i = this.consumption; i <= population; i+=rate) {
+//     rate++;
+//     this.consumption += rate;
+//     consumeDowingtonHours += 1;
+//     console.log(this.consumption + " people consumed at " + consumeDowingtonHours + " hour");
+//   }
+//   return consumeDowingtonHours;
+// }
 
 var hoursSpentInDowington = consumeDowingtonHours;// TODO: assign me the value of the
                            // above calculation
-consumeDowington();
+// consumeDowington();
 // console.log(hoursSpentInDowington + " hours spent");
 
 // Now, write a method that takes a population for an arbitrary
@@ -105,7 +105,7 @@ assert(blob.hoursToOoze(1000, 1) === hoursSpentInDowington,
   "hoursSpentInDowington should match hoursToOoze\"s result for 1000");
 // TODO: write three more assertions like the two above, testing out
 // the hoursToOoze method.
-assert(blob.hoursToOoze(2000, 2) === hoursSpentInDowington, "hoursSpentInDowington should match hoursToOoze\"s result for 2000");
+// assert(blob.hoursToOoze(2000, 2) === hoursSpentInDowington, "hoursSpentInDowington should match hoursToOoze\"s result for 2000");
 
 //*********************************************************
 // PROBLEM 2: Universal Translator. 20 points
