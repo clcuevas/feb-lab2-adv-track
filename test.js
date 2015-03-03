@@ -1,4 +1,4 @@
-var population = 1000;
+// var population = 1000;
 
 function Blob(consumption) {
 	this.consumption = consumption;
@@ -12,11 +12,11 @@ Blob.prototype.newTown = function(population, peoplePerHour) {
 
   var hoursToOoze = 0;
 
-  for (var i = blob.consumption; i <= this.population; i+=this.peoplePerHour) {
-    blob.consumption += this.peoplePerHour;
+  for (var i = this.consumption; i <= this.population; i+=this.peoplePerHour) {
+    this.consumption += this.peoplePerHour;
     this.peoplePerHour++;
     hoursToOoze += 1;
-    console.log("my rate " + this.peoplePerHour + " and my total hours " + hoursToOoze + " AND consumption " + blob.consumption);
+    console.log("my rate " + this.peoplePerHour + " and my total hours " + hoursToOoze + " AND consumption " + this.consumption);
   }
 
   return hoursToOoze;//#of hours the blob needs to ooze its way

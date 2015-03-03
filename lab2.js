@@ -73,25 +73,27 @@ function consumeDowington() {
 var hoursSpentInDowington = 0;// TODO: assign me the value of the
                            // above calculation
 consumeDowington();
-console.log(hoursSpentInDowington + " hours spent");
+// console.log(hoursSpentInDowington + " hours spent");
 
 // Now, write a method that takes a population for an arbitrary
 // town, and the starting consumption rate, and returns the number
 // of hours the blob needs to ooze its way through that town.
+
 Blob.prototype.newTown = function(population, peoplePerHour) {
   this.population = population;
   this.peoplePerHour = peoplePerHour; //rate
 
   var hoursToOoze = 0;
 
-  for (var i = blob.consumption; i < this.population; i+=this.peoplePerHour) {
+  for (var i = this.consumption; i <= this.population; i+=this.peoplePerHour) {
+    this.consumption += this.peoplePerHour;
     this.peoplePerHour++;
-    blob.consumption += this.peoplePerHour;
     hoursToOoze += 1;
+    // console.log("my rate " + this.peoplePerHour + " and my total hours " + hoursToOoze + " AND consumption " + this.consumption);
   }
 
   return hoursToOoze;//#of hours the blob needs to ooze its way
-}
+};
 
 
 function hoursToOoze(population, peoplePerHour) {
