@@ -39,7 +39,7 @@ function lastLetterSort(stringArray) {
     // read this: http://www.w3schools.com/jsref/jsref_sort.asp
 
   }
-  fruits.sort(byLastLetter);
+  // fruits.sort(byLastLetter);
 }
 
 var foreach = [23, 5, 44, 100, 115];
@@ -56,9 +56,14 @@ function sumArray(numberArray) {
 sumArray(foreach); //returns a sum of 287 (adds all numbers in array 'foreach')
 
 function sumSort(arrayOfArrays) {
-  arrayOfArrays.sort(function(item) {
+  arrayOfArrays.sort(function(a, b) {
     // TODO: implement me using sumArray
     //  order the arrays based on the sum of the numbers
     //  inside each array
+    return a-b;
   });
 }
+console.log(foreach); //show original foreach array
+sumSort(foreach);
+console.log(foreach); //show sorted array after running sumSort function
+
