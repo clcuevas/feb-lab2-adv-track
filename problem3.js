@@ -37,7 +37,9 @@ function lastLetterSort(stringArray) {
     //TODO: implement me. sort the strings in alphabetical
     // order using their last letter
     // read this: http://www.w3schools.com/jsref/jsref_sort.asp
-
+    fruits.sort(function(a, b) {
+    	return b.slice(-1) - a.slice(-1);
+    });
   }
   // fruits.sort(byLastLetter);
 }
