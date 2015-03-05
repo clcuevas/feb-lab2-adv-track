@@ -1,54 +1,43 @@
-function assert(expression, failureMessage) {
-  if(!expression) {
-    console.log("assertion failure: ", failureMessage);
+var fruit = ["banana", "orange", "cherry", "apple", "watermelon", "grape", "strawberry"];
+var myTempArray = [];
+var finalArray = [];
+
+console.log(fruit);
+console.log("the last letter of array index 0 is " + fruit[0].slice(-1));
+console.log("the last letter of array index 1 is " + fruit[1].slice(-1));
+
+function lastLetterSort(stringArray) {
+  
+  for (var i = 0; i < fruit.length; i++) {
+    myTempArray.push(fruit[i].split('').reverse('').join(''));
   }
-}
+  console.log("this is the myTempArray before sorting " + myTempArray);
+  
+  myTempArray.join();
+  myTempArray.sort();
 
-var population = 1000;
-
-function Blob() {
-  // this.consumption = consumption;
-
-  // return this.consumption;
-}
-
-var blob = new Blob(); //instance of Blob
-var consumeDowingtonHours = 0; //hold hours
-
-function consumeDowington() {
-  var rate = 0;
-
-  for (var i = this.consumption; i <= population; i+=rate) {
-    this.consumption += rate;
-    rate++;
-    consumeDowingtonHours++;
-    console.log(this.consumption + " people consumed at " + consumeDowingtonHours + " hour");
+  for (var i = 0; i < myTempArray.length; i++) {
+    finalArray.push(myTempArray[i].split('').reverse('').join(''));
   }
-  return consumeDowingtonHours;
+  console.log("this is the FINAL array sorting " + finalArray);
+
+  fruit = []; //empty our original array so we can push our array items in the sorted list we are looking for
+  console.log("original fruit array as empty " + fruit);
+
+  fruit.push(finalArray); //push our sorted items to our original array
+  console.log("original fruit array with the new SORTED VALUES " + fruit);
 }
 
-var hoursSpentInDowington = consumeDowingtonHours;
+lastLetterSort(fruit);
+// console.log("when array is sorted " + fruit);
+// console.log(myTempArray);
 
-console.log(consumeDowington());
 
-Blob.prototype.hoursToOoze = hoursToOoze;
 
-function hoursToOoze(population, peoplePerHour) {
-  // this.population = population;
-  // this.peoplePerHour = peoplePerHour; //rate
-  var consumption = 0;
-  var hoursTotal = 0;
-
-  for(var i = peoplePerHour; i <= population; i+=peoplePerHour) {
-    consumption += peoplePerHour;
-    peoplePerHour++;
-    hoursTotal++;
-    console.log("my rate " + peoplePerHour + " and my total hours " + hoursTotal + " AND consumption " + consumption);
-  }
-  console.log(hoursTotal + " hours spent consuming population");
-  return hoursTotal;
-}
-
-assert(blob.hoursToOoze(0, 1) === 0, "no people means no time needed.");
-assert(blob.hoursToOoze(1000, 1) === hoursSpentInDowington,
-  "hoursSpentInDowington should match hoursToOoze\"s result for 1000");
+// if (stringArray.slice(-1) > stringArray.slice(-2)) {
+  //   console.log("this is -1 slicer " + stringArray.slice(-1));
+  //   return 1;
+  // } else if (stringArray.slice(-1) < stringArray.slice(-2)) {
+  //   return -1;
+  // } else {
+  //   return 0;
