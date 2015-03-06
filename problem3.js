@@ -30,21 +30,62 @@ function assert(expression, failureMessage) {
 // assertions for each one
 //*********************************************************
 
-function lastLetterSort(stringArray) {
-	var fruits = ["banana", "orange", "apple", "cherry"];
+var fruit = ["banana", "orange", "cherry", "apple", "watermelon", "grape", "strawberry", "kiwi", "blueberry"];
+var fruitCorrect = ["banana", "orange", "apple", "grape", "kiwi", "watermelon", "blueberry", "strawberry", "cherry"];
+var dogBreeds = ["hound", "terrier", "akita", "retriever", "chihuahua", "shepherd", "pitbull", "eskimo", "beagle", "collie", "boxer", "bulldog"];
+var dogCorrect = ["akita", "chihuahua", "hound", "shepherd", "collie", "beagle", "bulldog", "pitbull", "eskimo", "terrier", "retriever", "boxer"];
 
-  function byLastLetter(array) {
-    //TODO: implement me. sort the strings in alphabetical
+function lastLetterSort(stringArray) {
+  //TODO: implement me. sort the strings in alphabetical
     // order using their last letter
     // read this: http://www.w3schools.com/jsref/jsref_sort.asp
-    fruits.sort(function(a, b) {
-    	return b.slice(-1) - a.slice(-1);
-    });
+  var myTempArray = []; //hold array list after reversing
+  var finalArray = []; //hold array list after reversing and sorting
+  console.log("BEFORE LOOP: " + stringArray);
+  
+  /*this loop will reverse the characters in each string (index[i]) of the array*/
+  for (var i = 0; i < stringArray.length; i++) {
+    myTempArray.push(stringArray[i].split('').reverse('').join(''));
   }
-  // fruits.sort(byLastLetter);
+  
+  //sort the temporary array container after reversing
+  myTempArray.sort();
+
+  /*this loop will push the sorted temp array that has each of its
+  strings in reverse order and sorted, while pushing it will also
+  undo the string character reversal but will maintain its order.
+  This order will be contained in another temporary array called 
+  finalArray*/
+  for (var i = 0; i < myTempArray.length; i++) {
+    finalArray.push(myTempArray[i].split('').reverse('').join(''));
+  }
+  console.log("finalArray FINAL SORT:  " + finalArray);
+
+  /*empty our original array so we can push our array items in the sorted list we are looking for*/
+  stringArray = [];
+
+  /*push finalArray sorted items into the original array*/
+  stringArray.push(finalArray);
+  console.log("stringArray AFTER: " + stringArray);
+
+  if (stringArray === finalArray) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-var foreach = [23, 5, 44, 100, 115];
+assert(lastLetterSort(fruit) === false, "incorrect sort!"); //why????
+assert(lastLetterSort(dogBreeds) === true, "incorrect sort!");
+
+var numbers1 = [23, 5, 44, 100, 115];
+var numbers2 = [66, 39, 1, 209, 557];
+var numbers3 = [1, 3, 1, 3];
+var numbersArray = [numbers1, numbers2, numbers3];
+var numbers4 = [15, 69];
+var numbers5 = [365, 1, 0, 2];
+var numbers6 = [4, 88];
+var numbersArray2 = [numbers4, numbers5, numbers6];
 
 function sumArray(numberArray) {
   var sum = 0;
@@ -55,17 +96,31 @@ function sumArray(numberArray) {
   return sum;
 }
 
-sumArray(foreach); //returns a sum of 287 (adds all numbers in array 'foreach')
+assert(sumArray(numbers1) === 287, "incorrect SUM!");
+assert(sumArray(numbers2) === 872, "incorrect SUM!");
+assert(sumArray(numbers3) === 8, "incorrect SUM!");
+// console.log(numbersArray);
+
 
 function sumSort(arrayOfArrays) {
-  arrayOfArrays.sort(function(a, b) {
-    // TODO: implement me using sumArray
-    //  order the arrays based on the sum of the numbers
-    //  inside each array
+  // TODO: implement me using sumArray
+  //  order the arrays based on the sum of the numbers
+  //  inside each array
+  var sumValues = [];
+  for (var i = 0; i < arrayOfArrays.length; i++) {
+    var order = sumArray(arrayOfArrays[i]);
+    sumValues.push(order);
+  }
+  sumValues.sort(function(a, b) {
     return a-b;
   });
+  console.log(sumValues);
+  if (sumValues[0] > sumValues[1]) {
+    return false;
+  } else {
+    return true;
+  }
 }
-console.log(foreach); //show original foreach array
-sumSort(foreach);
-console.log(foreach); //show sorted array after running sumSort function
 
+assert(sumSort(numbersArray) === true, "incorrect sumSort!");
+assert(sumSort(numbersArray2) === true, "incorrect sumSort!");
